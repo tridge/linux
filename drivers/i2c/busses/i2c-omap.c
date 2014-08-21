@@ -1127,6 +1127,9 @@ omap_i2c_probe(struct platform_device *pdev)
 		dev->set_mpu_wkup_lat = pdata->set_mpu_wkup_lat;
 	}
 
+        // force 400kHz bus. Where can we configure this properly?
+        dev->speed = 400;
+
 	dev->pins = devm_pinctrl_get_select_default(&pdev->dev);
 	if (IS_ERR(dev->pins)) {
 		if (PTR_ERR(dev->pins) == -EPROBE_DEFER)
